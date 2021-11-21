@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+
 import {
     CardContainer,
     CardWrapper
 } from './Posts.elements';
-import Card from '../Card/Card';
+import { Card } from '../Card/Card';
 import { Col } from 'react-bootstrap';
 import { Search } from '../Search/Search';
 
-const Posts = () => {
+export const Posts = ({ propmessage }) => {
+    var name = 'Posts';
 
     useEffect(async () => {
+        console.log(propmessage + name);
+
         let allPosts = await
             fetch('https://jsonplaceholder.typicode.com/posts')
                 .then((response) => response.json())
@@ -40,7 +45,7 @@ const Posts = () => {
 
     return (
         <>
-            <Search data={posts} setFiltered={setFiltered} />
+            <Search data={posts} setFiltered={setFiltered} propmessage={propmessage} />
             <CardWrapper>
                 <CardContainer xs={1} md={3} className="g-4">
                     {filtered.map((x) => {
@@ -53,6 +58,7 @@ const Posts = () => {
                                     title={x.title}
                                     text={x.body}
                                     user={x.name}
+                                    propmessage={propmessage}
                                 />
                             </Col>
                         )
@@ -63,4 +69,6 @@ const Posts = () => {
     )
 }
 
-export default Posts;
+Posts.propTypes = {
+    propmessage: PropTypes.string,
+};

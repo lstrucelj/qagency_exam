@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 import { useParams } from 'react-router-dom';
 import {
     CardContainer,
     CardWrapper,
     Title
 } from '../Posts/Posts.elements';
-import Card from '../Card/Card';
+import { Card } from '../Card/Card';
 import { Col } from 'react-bootstrap'
 
-const Post = () => {
+export const Post = ({ propmessage }) => {
+    var name = 'Post';
 
     let { id } = useParams();
 
     const [post, setPost] = useState({})
 
     useEffect(async () => {
+        console.log(propmessage + name);
+
         let getPost = await
             fetch('https://jsonplaceholder.typicode.com/posts/' + id)
                 .then((response) => response.json())
@@ -48,6 +53,7 @@ const Post = () => {
                         text={post.body}
                         user={post.username}
                         disable={true}
+                        propmessage={propmessage}
                     />
                 </Col>
             </CardContainer>
@@ -65,6 +71,7 @@ const Post = () => {
                                     user={x.email}
                                     disable={true}
                                     hideHeader={true}
+                                    propmessage={propmessage}
                                 />
                             </Col>
                         );
@@ -76,4 +83,6 @@ const Post = () => {
 
 }
 
-export default Post;
+Post.propTypes = {
+    propmessage: PropTypes.string,
+};

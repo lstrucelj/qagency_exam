@@ -4,3 +4,4 @@ npm i react-bootstrap bootstrap@5.1.3 --save
 npm i prop-types --save
 npm i bootstrap --save
 npm i react-icons --save
+npm i jest --save-dev

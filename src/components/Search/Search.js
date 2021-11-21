@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 import {
     SearchWrapper,
     SearchInput,
@@ -7,7 +9,11 @@ import {
 } from './Search.elements';
 
 
-export const Search = ({ data, setFiltered }) => {
+export const Search = ({ data, setFiltered, propmessage }) => {
+    var name = 'Search';
+    useEffect(function () {
+        console.log(propmessage + name);
+    }, [])
 
     function handleSearch(event) {
         var value = event.target.value;
@@ -26,3 +32,9 @@ export const Search = ({ data, setFiltered }) => {
         </SearchWrapper>
     )
 }
+
+Search.propTypes = {
+    data: PropTypes.array,
+    setFiltered: PropTypes.func,
+    propmessage: PropTypes.string,
+};

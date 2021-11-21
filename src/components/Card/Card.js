@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
     CardContainer,
@@ -12,7 +12,12 @@ import {
 } from './Card.elements';
 import { Link } from 'react-router-dom';
 
-const Card = ({ id, title, text, user, disable, hideHeader }) => {
+export const Card = ({ id, title, text, user, disable, hideHeader, propmessage }) => {
+    var name = 'Card';
+
+    useEffect(function () {
+        console.log(propmessage + name);
+    }, [])
 
     const setBg = () => {
         const randomColor = Math.floor(Math.random() * 16777215).toString(16);
@@ -39,7 +44,9 @@ const Card = ({ id, title, text, user, disable, hideHeader }) => {
 Card.propTypes = {
     title: PropTypes.string,
     text: PropTypes.string,
-    user: PropTypes.string
+    user: PropTypes.string,
+    id: PropTypes.number,
+    disable: PropTypes.bool,
+    hideHeader: PropTypes.bool,
+    propmessage: PropTypes.string,
 };
-
-export default Card;
