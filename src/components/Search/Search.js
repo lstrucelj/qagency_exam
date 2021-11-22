@@ -20,13 +20,13 @@ export const Search = ({ data, setFiltered, propmessage }) => {
 
     function filterByValue(data, value) {
         let filtered = data.filter((x) => {
-            return x.name.includes(value) || x.title.includes(value);
+            return x.name.toLowerCase().includes(value) || x.title.toLowerCase().includes(value);
         });
         return filtered;
     }
 
     function handleSearch(event) {
-        var value = event.target.value;
+        var value = event.target.value.toLowerCase();
         var filter = filterByValue(data, value);
         setFiltered(filter);
         setfilterData(filter);
