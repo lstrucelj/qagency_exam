@@ -47,7 +47,7 @@ export const Posts = ({ propmessage }) => {
         <>
             <Search data={posts} setFiltered={setFiltered} propmessage={propmessage} />
             <CardWrapper>
-                <CardContainer xs={1} md={3} className="g-4">
+                <CardContainer id="container" xs={1} md={3} className="g-4">
                     {filtered.map((x) => {
                         return (
                             <Col key={x.id}>

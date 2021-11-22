@@ -7,9 +7,13 @@ import {
     CardFooter,
     CardTitle,
     CardText,
-    CardUser
-
+    CardUser,
+    CardDetails,
+    Image
 } from './Card.elements';
+import titleimg from '../../assets/title.png';
+import noteimg from '../../assets/note.png';
+import userimg from '../../assets/user.png';
 import { Link } from 'react-router-dom';
 
 export const Card = ({ id, title, text, user, disable, hideHeader, propmessage }) => {
@@ -29,13 +33,24 @@ export const Card = ({ id, title, text, user, disable, hideHeader, propmessage }
         <Link to={'/post/' + id} style={{ textDecoration: 'none', color: 'black', pointerEvents: disable ? "none" : null }}>
             <CardContainer>
                 {!hideHeader && <CardHeader color={setBg()} />}
-                <CardBody>
-                    <CardTitle>{title}</CardTitle><hr />
-                    <CardText>{text}</CardText>
-                </CardBody>
-                <CardFooter>
-                    <CardUser>{user}</CardUser>
-                </CardFooter>
+                <CardDetails>
+                    <CardBody>
+                        <CardTitle>
+                            <Image src={titleimg} />
+                            {title}
+                        </CardTitle><hr />
+                        <CardText>
+                            <Image src={noteimg} />
+                            {text}
+                        </CardText>
+                    </CardBody>
+                    <CardFooter>
+                        <CardUser>
+                            <Image src={userimg} />
+                            {user}
+                        </CardUser>
+                    </CardFooter>
+                </CardDetails>
             </CardContainer>
         </Link >
     )

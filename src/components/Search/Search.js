@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -11,16 +11,25 @@ import {
 
 export const Search = ({ data, setFiltered, propmessage }) => {
     var name = 'Search';
+
+    const [filterData, setfilterData] = useState(data);
+
     useEffect(function () {
         console.log(propmessage + name);
-    }, [])
+    }, []);
+
+    function filterByValue(data, value) {
+        let filtered = data.filter((x) => {
+            return x.name.includes(value) || x.title.includes(value);
+        });
+        return filtered;
+    }
 
     function handleSearch(event) {
         var value = event.target.value;
-        let filtered = data.filter((x) => {
-            return x.name.includes(value) || x.title.includes(value);
-        })
-        setFiltered(filtered);
+        var filter = filterByValue(data, value);
+        setFiltered(filter);
+        setfilterData(filter);
     }
 
     return (
